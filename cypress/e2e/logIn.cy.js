@@ -1,16 +1,29 @@
-/// <reference types="Cypress" />
-import { loginPage } from "../pageObject/loginPage";
 
-describe("login tests ", () => {
-  beforeEach("visit the app ", () => {
-    cy.visit("/");
-    
+  /// <reference types="Cypress" />
+
+import { loginPage } from "../pageObject/loginPage"
+
+describe("Login test", () => {
+    beforeEach("Visit Login page", () => {
+        cy.visit("/login")
+        cy.url().should("include", "/login");
+        loginPage.loginPageHeading
+        .should("be.visible")
+        .and("have.text", "Log in with your existing account")
+        .and("have.css", "color", "rgb(62, 139, 117)");
     });
-    it("Log in valid",()=>{
+    it("Login with a valid Data", () => {
+        cy.intercept({
+            method: "POST",
+            url: `${Cypress.env("apiUrl")}/v2/login`,
+        }).as("validLogin");
         loginPage.login("Miroslav023@gmail.com", "Miroslav023");
-        cy.url().should("not.contain", "/login");
+        cy.wait("@validLogin").then((interception) => {
+        console.log(interception);
+        expect(interception.response.statusCode).not.to.be.equal(401);
+        expect(interception.response.statusCode).to.be.equal(200);
+        expect(interception.response.body.token).to.exist;
+          });
+        cy.url().should("not.include", "/login");
     });
-
-   });
-   
-  
+});

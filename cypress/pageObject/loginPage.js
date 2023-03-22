@@ -1,23 +1,25 @@
 class LoginPage {
-    
-    get emailInput() {
-        return cy.get('.el-form-item__content').find('input[type="email"]');
-    }
-  
-    get passwordInput() {
-      return cy.get('.el-form-item__content').find('input[type="password"]');
-    }
-  
-    get submitButton() {
-      return cy.get("button").eq(0);
-    }
-  
-    
-    login(email, password) {
-      this.emailInput.type(email);
-      this.passwordInput.type(password);
-      this.submitButton.click();
-    }
+  get loginPageHeading() {
+    return cy.get("h1");
   }
-  
-  export const loginPage = new LoginPage();
+
+  get emailInput() {
+    return cy.get("input[type='email']");
+  }
+
+  get passwordInput() {
+    return cy.get("input[type='password']");
+  }
+
+  get loginButton() {
+    return cy.get(".vs-c-btn").first();
+  }
+
+  login(email, password) {
+    this.emailInput.type(email);
+    this.passwordInput.type(password);
+    this.loginButton.click();
+  }
+}
+
+export const loginPage = new LoginPage();
