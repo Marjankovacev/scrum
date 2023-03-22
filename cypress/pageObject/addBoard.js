@@ -13,9 +13,8 @@ class AddBoard {
     get scrumChack(){
       return cy.get(".vs-c-radio-check").first();
     }
-    get delBoard() {
-      return cy.get('.vs-c-site-logo').eq(-2);
-    }
+    
+    
     
     fillboardData(name) {
       this.addButton.click();

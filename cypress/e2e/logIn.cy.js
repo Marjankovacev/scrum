@@ -5,7 +5,7 @@ import { loginPage } from "../pageObject/loginPage"
 
 describe("Login test", () => {
     beforeEach("Visit Login page", () => {
-        cy.visit("/login")
+        cy.visit("/login");
         cy.url().should("include", "/login");
         loginPage.loginPageHeading
         .should("be.visible")

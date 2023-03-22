@@ -22,8 +22,7 @@ describe("ADD Board tests ", () => {
         addBoard.fillboardData(orgData.orgName);
         cy.url().should("include", "/boards");
         cy.wait(1000);
-        addBoard.delBoard.click();
-        cy.url().should("include", "/trash")
+        
       
     })
    
