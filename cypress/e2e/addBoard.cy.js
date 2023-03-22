@@ -20,7 +20,13 @@ describe("ADD Board tests ", () => {
       
     it.only("ADD Organization",()=>{
         addBoard.fillboardData(orgData.orgName);
+        addBoard.delBoard.click();
         
-    })  
+        
+    })
+    it("delete board",()=>{
+      addBoard.delBoard.click()
+    })
+    
       
 });

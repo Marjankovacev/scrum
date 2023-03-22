@@ -1,7 +1,7 @@
 class AddBoard {
     
     get boardTitle() {
-        return cy.get('input[type="text"]');
+        return cy.get('input[placeholder="Enter title..."]');
     }
   
     get addButton() {
@@ -10,18 +10,22 @@ class AddBoard {
     get nextButton() {
         return cy.get("button").last();
     }
-    get createButton() {
-        return cy.get("button").last();
+    get scrumChack(){
+      return cy.get(".vs-c-radio-check").first();
     }
-    get okButton() {
-        return cy.get("button").last();
+    get delBoard() {
+      return cy.get('.vs-c-site-sign');
     }
-
-  
     
     fillboardData(name) {
       this.addButton.click();
       this.boardTitle.type(name);
+      this.nextButton.click();
+      this.scrumChack.click();
+      this.nextButton.click();
+      this.nextButton.click();
+      this.nextButton.click();
+      this.nextButton.click();
     }
   }
   
