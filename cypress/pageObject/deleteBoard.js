@@ -1,8 +1,5 @@
 class DeleteBoard {
     
-   get delBoard() {
-      return cy.get('.vs-c-site-logo').eq(-2);
-    }
     get listframe(){
         return cy.get(".vs-l-project__menu");
     }

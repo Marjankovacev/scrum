@@ -18,13 +18,27 @@ describe("ADD Board tests ", () => {
       });
       
       
-    it.only("ADD Organization",()=>{
+    it("ADD Organization",()=>{
         addBoard.fillboardData(orgData.orgName);
         cy.url().should("include", "/boards");
         cy.wait(1000);
         
-      
     })
+    it("add new board", () => {
+      cy.intercept({
+          method: "POST",
+          url: Cypress.env("apiUrl") + "/v2/boards"
+      }).as("validNewBoard");
+      addBoard.fillboardData(orgData.orgName);
+      cy.wait("@validNewBoard").then((interception) => {
+          console.log(interception);
+          expect(interception.response.statusCode).to.be.equal(201);
+          expect(interception.response.statusCode).not.to.be.equal(401);
+          expect(interception.response.body.id).to.exist;
+          
+          cy.url().should("contain", "/boards");
+      })
+  })
    
     
     
