@@ -12,6 +12,7 @@ describe("ADD Organization tests ", () => {
       cy.visit("/");
       loginPage.login("Miroslav023@gmail.com", "Miroslav023");
       cy.wait(300)
+      cy.url().should("not.include", "/login");
       });
       
       
@@ -19,6 +20,11 @@ describe("ADD Organization tests ", () => {
         addOrganization.fillData(orgData.orgName);
         cy.wait(2000)
         addOrganization.okButton.click()
+        cy.url().should("include", "/organizations")
     })  
       
 });
+
+
+
+

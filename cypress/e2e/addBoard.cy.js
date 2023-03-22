@@ -14,16 +14,17 @@ describe("ADD Board tests ", () => {
       cy.wait(300);
       addOrganization.fillData(orgData.orgName);
         cy.wait(2000)
-        addOrganization.okButton.click()
+        addOrganization.okButton.click();
       });
       
       
     it.only("ADD Organization",()=>{
         addBoard.fillboardData(orgData.orgName);
+        cy.url().should("include", "/boards");
         cy.wait(1000);
         addBoard.delBoard.click();
-        
-        
+        cy.url().should("include", "/trash")
+      
     })
    
     
